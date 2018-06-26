@@ -1,0 +1,99 @@
+//Configuration file for RTSPMultiCam
+//add comments using C++ style
+
+//RTSP ports
+RTSP_port = 8554;  
+HTTP_port = 8080;
+
+//size of picture captured from a camera
+subpict_width = 640;
+subpict_height = 480;
+
+//the column and row of the combined picture array
+//  cam_0  |  cam_1
+// ------------------
+//  cam_2  |  cam_3
+mosaic_col = 2;
+mosaic_row = 2;
+
+//encoder configure
+encoder{
+  //for software encoding use "libx264"
+  //for hardware encoding on AMD graphic card use "h264_amf"
+  //for hardware encoding on NV graphic card use "h264_nvenc" 
+  //for hardware encoding on Intel embedded graphic card use "h264_qsv"
+  //check the capability of the graphic card before use, i.e., maximum frame size and rate
+  name = "h264_amf";
+
+  //frame rate, minimum 10, maximum 30 
+  frame_rate = 30; 
+
+  //set encoder parameters below
+  //
+  //recommended setting for libx264, see libx264.txt
+  //crf = 20;
+  //preset = "veryfast";
+  //profile = "high";
+  //tune = "film";
+  //
+  //recommended settings for h264_nvenc, see h264_nvenc.txt 
+  //preset = "ll"; // or llhp for faster encoding, llhq for high quality
+  //profile = "high";
+  //
+  //recommended settings for h264_amf, see h264_amf.txt 
+  //usage = "ultralowlatency"; // or "webcam", try and see
+  //profile = "high";
+  //quality = "balanced";
+  //
+  //recommended settings for h264_qsv, see h264_qsv.txt
+  preset = "veryfast";
+  profile = "high";
+  vcm = "1" ; //enable so-called "video conference mode"
+};
+
+//camera config
+//you can use CamTest to show the information of available camera in the system
+//camera 1
+cam_0 {
+   name = "USB2.0 PC CAMERA"; // the name of the camera
+   device_num = 0;            // if you have multiple camera with the same name, 
+                              // use device num to differentiate them, starting from 0
+   frame_rate = 30;           // this is the frame for reading picture from camera
+   pixel_format = "yuyv422";  // pixel format for picture read from camera, 
+                              // you may use mjpeg if your camera support it
+   pict_label = "CAMERA_1";   // the label that will be displayed on the picture
+   time_stamp = "yes";        // showing time stamp on the picture
+};
+
+//camera 2
+cam_1 {
+   name = "USB2.0 PC CAMERA"; // the name of the camera
+   device_num = 1;            // if you have multiple camera with the same name, 
+                              // use device num to differentiate them, starting from 0
+   frame_rate = 30;           // this is the frame for reading picture from camera
+   pixel_format = "yuyv422";  // pixel format for picture read from camera
+   pict_label = "CAMERA_2";   // the label that will be displayed on the picture
+   time_stamp = "yes";        // showing time stamp on the picture
+};
+
+//camera 3
+cam_2 {
+   name = "USB2.0 PC CAMERA"; // the name of the camera
+   device_num = 2;            // if you have multiple camera with the same name, 
+                              // use device num to differentiate them, starting from 0
+   frame_rate = 30;           // this is the frame for reading picture from camera
+   pixel_format = "yuyv422";  // pixel format for picture read from camera
+   pict_label = "CAMERA_3";   // the label that will be displayed on the picture
+   time_stamp = "yes";        // showing time stamp on the picture
+};
+
+//camera 4
+cam_3 {
+   name = "USB2.0 PC CAMERA"; // the name of the camera 
+   device_num = 3;            // if you have multiple camera with the same name, 
+                              // use device num to differentiate them, starting from 0 
+   frame_rate = 30;           // this is the frame for reading picture from camera
+   pixel_format = "yuyv422";  // pixel format for picture read from camera
+   pict_label = "CAMERA_4";   // the label that will be displayed on the picture
+   time_stamp = "yes";        // showing time stamp on the picture
+};
